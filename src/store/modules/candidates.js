@@ -11,9 +11,9 @@ const getters = {
 const actions = {
   async fetchCandidates({ commit }) {
     const response = await axios.get("api/candidates");
-    console.log(response, "DATA##");
+    console.log(response.data, "DATA##");
 
-    commit("setCandidates", response);
+    commit("setCandidates", response.data);
   },
 };
 
