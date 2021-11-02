@@ -2,7 +2,7 @@
   <v-container fluid>
     <v-row class="d-flex align-content-space-around flex-wrap">
       <v-card
-        v-for="cand in allCandidates"
+        v-for="cand in candidatesList"
         :key="cand.id"
         class="pa-xs-4 ma-10"
         width="400"
@@ -34,6 +34,12 @@
         </v-col>
       </v-card>
     </v-row>
+    <v-pagination
+      class="pagination mb-2"
+      v-model="page"
+      :length="Math.ceil(this.allCandidates.length / 10)"
+      @input="updatePage"
+    ></v-pagination>
   </v-container>
 </template>
 
@@ -44,17 +50,38 @@ export default {
   name: "CandidateOverview",
   data() {
     return {
-      title: "",
+      page: 1,
+      pageSize: 10,
+      listCount: 0,
+      candidatesList: [],
     };
-  },
-  methods: {
-    ...mapActions(["fetchCandidates"]),
   },
   computed: mapGetters(["allCandidates"]),
   created() {
     this.fetchCandidates();
   },
+  beforeUpdate() {
+    console.log(this.allCandidates, "DAYTA");
+    this.initPage();
+    this.updatePage(this.page);
+  },
+
+  methods: {
+    ...mapActions(["fetchCandidates"]),
+    initPage() {
+      this.listCount = this.allCandidates.length;
+      if (this.listCount < this.pageSize) {
+        this.candidatesList = this.allCandidates;
+      } else {
+        this.candidatesList = this.allCandidates.slice(0, this.pageSize);
+      }
+    },
+    updatePage(pageIndex) {
+      let start = (pageIndex - 1) * this.pageSize;
+      let end = pageIndex * this.pageSize;
+      this.candidatesList = this.allCandidates.slice(start, end);
+      this.page = pageIndex;
+    },
+  },
 };
 </script>
-
-
