@@ -2,7 +2,7 @@
   <v-container fluid>
     <v-row class="d-flex align-content-space-around flex-wrap">
       <v-card
-        v-for="cand in candidatesList"
+        v-for="cand in checkbox ? allCandidates : candidatesList"
         :key="cand.id"
         class="pa-xs-4 ma-10"
         width="400"
@@ -34,12 +34,22 @@
         </v-col>
       </v-card>
     </v-row>
-    <v-pagination
-      class="pagination mb-2"
-      v-model="page"
-      :length="Math.ceil(this.allCandidates.length / 10)"
-      @input="updatePage"
-    ></v-pagination>
+    <v-col align="center" cols="12">
+      <v-checkbox
+        class="ma-4"
+        v-model="checkbox"
+        :label="`View All`"
+      ></v-checkbox>
+    </v-col>
+    <v-col align="center" cols="12">
+      <v-pagination
+        v-if="!checkbox"
+        class="pagination mb-2"
+        v-model="page"
+        :length="Math.ceil(this.allCandidates.length / 10)"
+        @input="updatePage"
+      ></v-pagination>
+    </v-col>
   </v-container>
 </template>
 
@@ -54,6 +64,7 @@ export default {
       pageSize: 10,
       listCount: 0,
       candidatesList: [],
+      checkbox: false,
     };
   },
   computed: mapGetters(["allCandidates"]),
@@ -61,7 +72,6 @@ export default {
     this.fetchCandidates();
   },
   beforeUpdate() {
-    console.log(this.allCandidates, "DAYTA");
     this.initPage();
     this.updatePage(this.page);
   },
