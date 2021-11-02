@@ -1,11 +1,22 @@
 <template>
   <v-container fluid>
-    <v-row class="d-flex align-content-space-around flex-wrap">
+    <v-row>
+      <!-- Vuetify Checkbox Component, as an Option to view all Data -->
+      <v-col align="center" cols="12">
+        <v-checkbox
+          class="ml-7"
+          v-model="checkbox"
+          :label="`View All`"
+        ></v-checkbox>
+      </v-col>
+    </v-row>
+    <!-- Our Mapped Data -->
+    <v-row>
       <v-card
+        class="pa-xs-4 ma-10 d-xl-flex align-content-space-around flex-wrap"
+        width="400"
         v-for="cand in checkbox ? allCandidates : candidatesList"
         :key="cand.id"
-        class="pa-xs-4 ma-10"
-        width="400"
       >
         <v-col cols="12">
           <v-list-group :value="false">
@@ -15,41 +26,39 @@
               </v-list-item-avatar>
               <v-list-item-content align="left">
                 <v-list-item-title>
-                  {{ cand.first_name }} {{ cand.last_name }}
+                  <b>{{ cand.first_name }} {{ cand.last_name }}</b>
                 </v-list-item-title>
                 <v-list-item-title>{{ cand.job_title }}</v-list-item-title>
               </v-list-item-content>
             </template>
 
             <v-list-item-title>
-              <v-icon dense color="grey "> mdi-phone </v-icon>
+              <v-icon class="ma-7" dense color="#323232"> mdi-phone </v-icon>
               {{ cand.phone }}
             </v-list-item-title>
 
             <v-list-item-title>
-              <v-icon dense color="grey "> mdi-mail </v-icon>
+              <v-icon class="ma-7" dense color="#323232"> mdi-email </v-icon>
               {{ cand.email }}
             </v-list-item-title>
           </v-list-group>
         </v-col>
       </v-card>
     </v-row>
-    <v-col align="center" cols="12">
-      <v-checkbox
-        class="ma-4"
-        v-model="checkbox"
-        :label="`View All`"
-      ></v-checkbox>
-    </v-col>
-    <v-col align="center" cols="12">
-      <v-pagination
-        v-if="!checkbox"
-        class="pagination mb-2"
-        v-model="page"
-        :length="Math.ceil(this.allCandidates.length / 10)"
-        @input="updatePage"
-      ></v-pagination>
-    </v-col>
+    <v-row>
+      <!-- Vuetify Pagination Component -->
+      <v-col align="center" cols="12">
+        <v-pagination
+          class="pagination mb-2"
+          color="#1976D2"
+          circle
+          v-if="!checkbox"
+          v-model="page"
+          :length="Math.ceil(this.allCandidates.length / 10)"
+          @input="updatePage"
+        ></v-pagination>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -60,14 +69,13 @@ export default {
   name: "CandidateOverview",
   data() {
     return {
+      checkbox: false,
+      candidatesList: [],
       page: 1,
       pageSize: 10,
       listCount: 0,
-      candidatesList: [],
-      checkbox: false,
     };
   },
-  computed: mapGetters(["allCandidates"]),
   created() {
     this.fetchCandidates();
   },
@@ -93,5 +101,6 @@ export default {
       this.page = pageIndex;
     },
   },
+  computed: mapGetters(["allCandidates"]),
 };
 </script>
