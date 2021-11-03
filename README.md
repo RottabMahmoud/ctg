@@ -1,28 +1,76 @@
-# Recruiting Platform Candidate Overview
+# CAREERSTEAM Case Study Description
 
-Welcome to this frontend coding challenge! In this project, You are provided with a setup that uses Vue.js and Vuetify. Once you have successfully started and built the project, you will be presented with a blank canvas. 
+## What the Application does
 
-Please follow the rest of the instructions in the document that we sent with this coding exercise.
+- A web page that Parsed and loaded all the Candidate List from a provided API into a List, containing Full name, Job title, Number, and email address, that is paginated 100 item per page.
+- The Design of the Candidate Card was Implemented by me using Figma.
 
-## Project setup
-```
-npm install
-```
+## Technologies
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+- Vue
+- Vuex
+- JavaScript
+- Vuetify
 
-### Compiles and minifies for production
-```
-npm run build
-```
 
-### Lints and fixes files
-```
-npm run lint
+## Project Installation
+
+```bash
+git clone https://github.com/Rottabx/ctg.git
+cd ctg
+yarn 
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## To Start the App
+
+```bash
+yarn serve
+```
+
+## For Building
+
+```bash
+yarn build
+```
+
+## Usage
+
+Used Vuetify as a Component Library.
+
+## Project Hierarchy
+```bash
+  ctg    
+    ├─ public
+    │  ├─ favicon.ico
+    │  ├─ index.html
+    ├─ src                   
+    │  ├─ assets
+    │  │  ├─ logo.png     
+    │  │  ├─ logo.svg         
+    │  ├─ components         
+    │  │  ├─ CandidateOverview.vue      
+    │  ├─ plugins              
+    │  │  └─ vuetify.js  
+    │  ├─ store    
+    │  │  └─ modules
+    │  │     │─ candidates.js                
+    │  │  └─ index.js        #
+    │  │─ App.vue
+    │  │─ main.js
+    ├─ .gitignore 
+    ├─ node_modules
+    ├─ package.json
+    ├─ babel.config.js
+    ├─ package-lock.json
+    ├─ README.md
+    └─ yarn.lock
+```
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
+
+## Badge
+
+<a href="https://www.ctg.com/"> <img src="https://img.shields.io/badge/Mahmoud%20Rottab-CTG-red" alt="CTG" /> </a>
+  
