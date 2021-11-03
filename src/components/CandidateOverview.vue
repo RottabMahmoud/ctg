@@ -13,7 +13,7 @@
     <!-- Our Mapped Data -->
     <v-row>
       <v-card
-        class="pa-xs-4 ma-10 d-xl-flex align-content-space-around flex-wrap"
+        class="pa-xs-4 ma-10 d-xl-flex align-content-space-around flex-wrap rounded-lg"
         width="400"
         v-for="cand in checkbox ? allCandidates : candidatesList"
         :key="cand.id"
