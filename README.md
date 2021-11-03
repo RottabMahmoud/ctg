@@ -2,7 +2,7 @@
 
 ## What the Application does
 
-- A web page that Parsed and loaded all the Candidate List from a provided API into a List, containing Full name, Job title, Number, and email address, that is paginated 100 item per page.
+- A web page that Parsed and loaded all the Candidate List from a provided API into a List, containing Full name, Job title, Number, and email address, that is paginated 10 item per page.
 - The Design of the Candidate Card was Implemented by me using Figma.
 
 ## Technologies
@@ -53,7 +53,7 @@ Used Vuetify as a Component Library.
     │  │  └─ vuetify.js  
     │  ├─ store    
     │  │  └─ modules
-    │  │     │─ candidates.js                
+    │  │     └─ candidates.js                
     │  │  └─ index.js        #
     │  │─ App.vue
     │  │─ main.js
